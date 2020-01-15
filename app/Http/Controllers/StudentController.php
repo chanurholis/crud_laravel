@@ -36,15 +36,15 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nama'    =>  'required',
-            'nrp'     =>  'required',
-            'email'   =>  'required',
-            'jurusan' =>  'required'
+        return $request->validate([
+            'nama'    => 'required',
+            'nrp'     => 'required',
+            'email'   => 'required',
+            'jurusan' => 'required'
         ]);
 
         Student::create($request->all());
-        return redirect('/Student')->with('status', 'Data Mahasiswa Berhasil Ditambahkan');
+        return redirect('/Student')->with('status', 'Data Mahasiswa Berhasil Ditambahkan.');
     }
 
     /**
@@ -89,6 +89,7 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        Student::destroy($student->id);
+        return redirect('/Student')->with('status', 'Data Mahasiswa Berhasil Dihapus.');
     }
 }

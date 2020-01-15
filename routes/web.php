@@ -23,6 +23,11 @@ Route::get('/Mahasiswa', 'MahasiswaController@index');
 
 // Student
 Route::get('/Student', 'StudentController@index');
+
 Route::get('/Student/create', 'StudentController@create');
+
 Route::get('/Student/{student}', 'StudentController@show');
+
 Route::post('/Student', 'StudentController@store');
+
+Route::delete('/Student/{student}', 'StudentController@destroy');
