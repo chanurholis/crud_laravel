@@ -12,6 +12,7 @@
 */
 
 // Page
+
 Route::get('/', 'PagesController@index');
 
 Route::get('/Home', 'PagesController@home');
@@ -31,3 +32,7 @@ Route::get('/Student/{student}', 'StudentController@show');
 Route::post('/Student', 'StudentController@store');
 
 Route::delete('/Student/{student}', 'StudentController@destroy');
+
+Route::get('/Student/{student}/edit', 'StudentController@edit');
+
+Route::patch('/Student/{student}', 'StudentController@update');

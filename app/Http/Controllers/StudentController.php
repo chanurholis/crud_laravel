@@ -36,7 +36,7 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->validate([
+        $request->validate([
             'nama'    => 'required',
             'nrp'     => 'required',
             'email'   => 'required',
@@ -66,7 +66,7 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        return view('student.edit', compact('student'));
     }
 
     /**
@@ -78,7 +78,22 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        //
+        $request->validate([
+            'nama'    => 'required',
+            'nrp'     => 'required',
+            'email'   => 'required',
+            'jurusan' => 'required'
+        ]);
+
+        Student::where('id', $student->id)
+            ->update([
+                'nama'    => $request->nama,
+                'nrp'     => $request->nrp,
+                'email'   => $request->email,
+                'jurusan' => $request->jurusan
+            ]);
+
+        return redirect('/Student')->with('status', 'Data Mahasiswa Berhasil Diubah.');
     }
 
     /**
